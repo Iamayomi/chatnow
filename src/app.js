@@ -24,6 +24,8 @@ const app = express(feathers())
 app.configure(configuration(configurationValidator))
 app.use(cors())
 app.use(json())
+
+
 app.use(urlencoded({ extended: true }))
 // Host the public folder
 app.use('/', serveStatic(app.get('public')))
@@ -60,5 +62,19 @@ app.hooks({
   setup: [],
   teardown: []
 })
+
+const sequelize = app.get("sequelizeClient");
+
+// console.log(sequelize)
+sequelize
+  .sync({ alter: true })
+  .then(() => {
+    console.log("Models synchronized with the database <<<<<<<<<<<<<>>>>>>>>>");
+  })
+  .catch((err) => {
+    console.error("UNABLE to synchronize with the DATABASE", err);
+  });
+
+
 
 export { app }

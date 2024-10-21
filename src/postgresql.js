@@ -1,9 +1,19 @@
-// For more information about this file see https://dove.feathersjs.com/guides/cli/databases.html
-import knex from 'knex'
+// // For more information about this file see https://dove.feathersjs.com/guides/cli/databases.html
+// import knex from 'knex'
 
-export const postgresql = (app) => {
-  const config = app.get('postgresql')
-  const db = knex(config)
+// export const postgresql = (app) => {
+//   const config = app.get('postgresql')
+//   const db = knex(config)
 
-  app.set('postgresqlClient', db)
-}
+//   app.set('postgresqlClient', db)
+// }
+
+import { Sequelize } from "sequelize";
+
+export const postgresql= (app) => {
+  const connection = app.get('postgresql');
+
+  const sequelize = new Sequelize(connection.connection, { dialect: "postgres" });
+
+  app.set("sequelizeClient", sequelize);
+};
