@@ -1,8 +1,8 @@
-import { DataTypes } from "sequelize";
 
-export default function (app) {
-    const sequelizeClient = app.get("sequelizeClient");
-    const users = sequelizeClient.define("users", {
+export default function (sequelize, DataTypes) {
+
+    const User = sequelize.define("users", {
+        
         firstName: {
             type: DataTypes.STRING,
         },
@@ -29,5 +29,5 @@ export default function (app) {
 
     })
 
-    return users;
+    return User;
 }

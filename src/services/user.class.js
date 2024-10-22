@@ -1,8 +1,9 @@
 
 import { NotFound } from "@feathersjs/errors";
+import {Service} from "feathers-sequelize";
 
 // This is a skeleton for a custom service class. Remove or add the methods you need here
-export class UserService {
+export default class UserService extends Service {
   constructor(app) {
     this.app = app;
     // this.Model = app.get("sequelizeClient").models.users;

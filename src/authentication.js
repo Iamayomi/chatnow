@@ -10,10 +10,12 @@ export const authentication = (app) => {
   authentication.register('local', new LocalStrategy())
   authentication.register('github', new OAuthStrategy())
 
-  authentication.setup(app, {
-    entityId: 'id'
-  });
-
   app.use('authentication', authentication)
+  const service = app.service("authentication").hooks({
+    before: {
+      create: [authentication.hooks.authenticate('local')],
+      remove: [authentication.hooks.authenticate('jwt')],
+    }
+  })
   app.configure(oauth())
 }

@@ -11,11 +11,10 @@
   },
   "postgresql": {
     "client": "pg",
-
     "connection": "postgres://postgres:myserver@localhost:5432/chatnow"
   },
   "authentication": {
-    "entityId": "id",
+    "entityId": "user",
     "service": "users",
     "secret": "4xdBg2OClu35oz1yKl4VHE7ETGRPxbr7",
     "authStrategies": [
