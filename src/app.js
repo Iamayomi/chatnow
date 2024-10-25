@@ -21,6 +21,7 @@ import { postgresql } from './postgresql.js'
 import { authentication } from './authentication.js'
 import { services } from './services/index.js'
 import { channels } from './channels.js'
+import SyncDatabase  from "./models/index.js"
 // import config from 'config';
 
 const app = express(feathers())
@@ -43,7 +44,7 @@ app.configure(
   })
 )
 app.configure(postgresql)
-
+app.configure(SyncDatabase)
 app.configure(authentication)
 
 app.configure(services)

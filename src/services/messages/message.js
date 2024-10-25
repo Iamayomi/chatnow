@@ -1,21 +1,18 @@
 import { authenticate } from '@feathersjs/authentication';
 // import {  protect } from "@feathersjs/authentication-local"
-import { UserService, getOptions } from './user.class.js';
-import { userPath, userMethods } from './user.shared.js';
+import { MessageService, getOptions } from './message.class.js';
+import { messagePath, messageMethods } from './message.shared.js';
 
 
-
-export const user = (app) => {
-  const {user} = app.get('sequelizeClient').models
-
-
-
-  app.use(userPath, new UserService(getOptions(app), user), {
-    methods: userMethods
+export const message = (app) => {
+  const {message} = app.get('sequelizeClient').models;
+ 
+  app.use(messagePath, new MessageService(getOptions(app), message), {
+    methods: messageMethods
   });
 
   // Initialize hooks
-  app.service(userPath).hooks({
+  app.service(messagePath).hooks({
     around: {
       // all: [async (context) => {
       //   console.error('Error occurred:', context.error);
